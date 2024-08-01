@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node -r dotenv/config --experimental-json-modules src/index.js",
     "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
   },
   "keywords": [],
@@ -13,10 +13,12 @@
   "description": "youtube clone",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "cloudinary": "^2.3.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-fileupload": "^1.5.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.5.1",
     "mongoose-aggregate-paginate-v2": "^1.1.2"
