@@ -1,13 +1,11 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-
+import fileUpload from "express-fileupload";
 const app = express();
 
 // middleware
-
 // cors middleware settings
-
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
@@ -22,10 +20,20 @@ app.use(express.json({ limit: "16kb" }));
 // extented true - will allow to provide nested object in url
 app.use(express.urlencoded({ extended: true }));
 
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "public/temp/",
+  })
+);
 // this will allow some assets like images favicon to use
 app.use(express.static("public"));
 
 // Cookie Parser Setting
 app.use(cookieParser());
+
+// importing routes
+import userRouter from "./routes/user.routes.js";
+app.use("/api/v1/users", userRouter);
 
 export { app };
